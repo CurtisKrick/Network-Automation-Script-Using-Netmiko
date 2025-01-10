@@ -1,0 +1,71 @@
+Overview
+
+This script demonstrates basic network automation tasks using Python and the Netmiko library. It includes functionality to:
+
+Backup the running configuration of network devices.
+Push configuration commands to devices.
+Monitor CPU and memory usage of devices.
+Features
+
+Backup Configuration: Creates timestamped backups of the device's running configuration.
+Push Configurations: Applies a list of configuration commands to the device.
+Monitor Performance: Retrieves CPU and memory usage statistics for the device.
+
+Requirements
+
+Python 3.7+
+The netmiko library (pip install netmiko)
+Network devices with SSH access enabled.
+Appropriate login credentials for the devices.
+Setup
+
+Install Dependencies:
+pip install netmiko
+Prepare the Script:
+Update the devices list in the script with the IP address, username, password, and (optional) enable password for your devices.
+Example:
+
+devices = [
+    {
+        'device_type': 'cisco_ios',
+        'host': '10.20.1.1',
+        'username': 'admin',
+        'password': 'adminpassword',
+        'secret': 'adminpassword',
+    }
+]
+Set Up Backup Directory:
+The script creates a backups folder in the current directory to store configuration backups.
+Usage
+
+Run the Script: Execute the script to perform all tasks (backup, configuration updates, and monitoring) for all devices in the devices list.
+python script_name.py
+Backup Configuration:
+The script automatically saves the configuration in the backups directory with a filename format:
+<device_host>_backup_<timestamp>.txt
+Push Configuration Commands:
+Update the config_commands list in the script with the desired commands to be applied.
+Example:
+
+config_commands = [
+    "hostname GNS3Router",
+    "interface FastEthernet0/0",
+    "description Configured via Netmiko",
+    "ip address 10.20.1.1 255.255.255.0",
+    "no shutdown"
+]
+Monitor Device:
+CPU and memory usage statistics are retrieved and displayed in the console.
+Directory Structure
+
+project/
+├── script_name.py       # The main script
+├── backups/             # Directory for configuration backups
+Customization
+
+Add more devices to the devices list as dictionaries.
+Modify the config_commands list for custom configurations.
+Extend the script with additional Netmiko functions for more advanced tasks.
+Error Handling
+
+The script handles exceptions for each task and logs errors to the console. Ensure proper credentials and connectivity to avoid failures.
